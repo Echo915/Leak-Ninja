@@ -1,0 +1,186 @@
+/* Set height of body and the document to 100% to enable "full page tabs" */
+body, html {
+    height: 100%;
+    margin: 0;
+    font-family: Arial;
+  }
+
+/* Style tab links */
+.tablink {
+    background-color: white;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    font-size: 17px;
+    width: 33.3333%;
+  }
+  
+  .tablink:hover {
+    background-color: lavender;
+  }
+
+  .tablink:active {
+    opacity: 0.5;
+  }
+
+  /* Style the tab content (and add height:100% for full page content) */
+.tabcontent {
+  display: none;
+  padding: 100px 20px;
+  height: 100%;
+}
+
+.data-upload-step {
+  width: 20%;
+  height: 300px;
+  position: relative;
+  overflow: hidden;
+  background-color: #FF7900;
+  border: 3px solid #FF7900;
+  border-radius: 10px;
+  float: left;
+  margin: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.5);
+}
+
+.data-upload-step-major {
+  width: 100%;
+  height: 80%;
+}
+
+.data-upload-step-minor h4 {
+  color: white;
+  text-align: center;
+  padding: 0 10px;
+}
+
+.data-upload-step img {
+  width: 100%;
+  height: 100%;
+}
+
+.steps-container {
+  width: 70%;
+  height: 350px;
+  margin: auto;
+  position: relative;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.5);
+}
+
+.steps {
+  width: 70%;
+  height: 10px;
+  display: flex;
+  position: relative;
+  margin: auto;
+  background-color: lavender;
+}
+
+.step {
+  display: flex;
+  position: absolute;
+  top: 50%;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  width: 50px;
+  color: white;
+  background-color: #FF7900;
+  border-radius: 30px;
+}
+
+.detail-steps-container {
+  width: 90%;
+  height: 50px;
+  margin: auto;
+  position: relative;
+  padding: 30px;
+}
+
+.detail-step {
+  width: 25%;
+  height: 100px;
+  position: absolute;
+  text-align: center;
+}
+
+.button {
+  border: none;
+  border-radius: 5px;
+  color: white;
+  background-color: #FF7900;
+  padding: 10px;
+}
+
+.button:hover {opacity: 0.7;}
+.button:active {opacity: 1;}
+
+/* Simulation */
+.sim {
+  text-decoration: none;
+  font-size: large;
+  font-weight: bold;
+}
+
+.sim:active {color: #FF7900;}
+
+.sim-menu {
+  font-size: small;
+  display: none;
+  margin: 10px 50px;
+}
+
+.sim-menu a {
+  text-decoration: none;
+}
+
+#sim-form {
+  display: none;
+  position: relative;
+  border: 1px solid #FF7900;
+  background-color: #FF7900;
+  overflow: hidden;
+  width: 25%;
+  height: 300px;
+  margin: 20px;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.5);
+}
+
+.form-head {
+  height: 20%;
+  display: flex;
+  background-color: #FF7900;
+  color: white;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-body {
+  padding: 15px;
+  height: 80%;
+  background-color: white;
+}
+
+.leak-location {
+  color: red;
+  font-size: 25px;
+  font-weight: bolder;
+  text-align: center;
+}
+
+.leak-display {
+  width: 45%;
+  margin: 2%;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.5);
+}
+
+/*.leak-display-label {
+  font-style: italic;
+  position: absolute;
+  bottom: 0;
+  margin-bottom: 10px;
+}*/

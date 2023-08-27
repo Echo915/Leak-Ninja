@@ -1,0 +1,88 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Leak Detection Master</title>
+        <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    </head>
+    <body>
+        <button class="tablink" id="defaultOpen" onclick="openPage('home', this)">Home</button>
+        <button class="tablink" onclick="openPage('data', this)">Data</button>
+        <button class="tablink" onclick="openPage('simulation', this)">Simulation</button>
+
+        <div id="home" class="tabcontent">
+            <h1>{{ greeting }}</h1>
+        </div>
+
+        <div id="data" class="tabcontent">
+            <h1>Import data here</h1>
+            <div class="steps-container">
+                <div class="steps-head" style="padding-top: 100px;">
+                    <div class="steps">
+                        <div class="step" style="left: 0px; transform: translate(-50%, -50%);">1</div>
+                        <div class="step" style="left: 50%; transform: translateY(-50%);">2</div>
+                        <div class="step" style="right: 0px; transform: translate(50%, -50%);">3</div>
+                    </div>
+                </div>
+                <div class="detail-steps-container">
+                    <div class="detail-step">
+                        <p>Create a new Excel Spreadsheet document. Compute the required fluid data (Pipe Length, Pressure, and Velocity)</p>
+                    </div>
+                    <div class="detail-step" style="left: 50%; transform: translateX(-40%);">
+                        <p>Save the file as a "Comma Separated Values" (csv) file.</p>
+                    </div>
+                    <div class="detail-step" style="right: 0;">
+                        <p>Upload Data Here!</p>
+                        <form method="post" enctype="multipart/form-data">{% csrf_token %}
+                            <p>{{ dataForm.label }}</p>
+                            <p>{{ dataForm.density }}</p>
+                            <p>{{ dataForm.data }}</p>
+                            <button type="submit" class="button">Upload</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="simulation" class="tabcontent">
+            <h1>Run simulation here</h1>
+            <div>
+                {% if availablePipeData %}
+                    <div class="available-pipe-data-container">
+                        {% for pipe_data in availablePipeData %}
+                            <div class="available-pipe-data" onclick="toggleShowHideChildren(this)">
+                                <a id="text" class="sim" href="#">{{ pipe_data }}</a>
+                                <div class="sim-menu"><a href="#" onclick="runSimulation(this)">Run</a> | <a href="#">Delete</a></div>
+                            </div><br>
+                        {% endfor %}
+                        <br>
+                        <button class="button" onclick="toggleShowHide('sim-form')">Add</button>
+                        <div id="result"></div>
+                        <div id="result-template">
+                            <p class="leak-location"></p>
+                            <img class="leak-display">
+                            <img class="leak-display">
+                        </div>
+                    </div>
+                {% else %}
+                    <p>Click <button class="button" onclick="toggleShowHide('sim-form')">Add</button> to add pipe data.</p>
+                {% endif %}
+            </div>
+            <div id="sim-form">
+                <div class="form-head">
+                    <h3>Pipe Data</h3>
+                </div>
+                <div class="form-body">
+                    <form method="post" enctype="multipart/form-data">{% csrf_token %}
+                        {{ pipeDataForm.as_p }}
+                        <input type="submit" value="Save" class="button">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script src="{% static 'javascript/script.js' %}"></script>
+</html>
