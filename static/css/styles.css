@@ -1,29 +1,33 @@
 /* Set height of body and the document to 100% to enable "full page tabs" */
 body, html {
-    height: 100%;
-    margin: 0;
-    font-family: Arial;
-  }
+  height: 100%;
+  margin: 0;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+button {
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
 
 /* Style tab links */
 .tablink {
-    background-color: white;
-    float: left;
-    border: none;
-    outline: none;
-    cursor: pointer;
-    padding: 14px 16px;
-    font-size: 17px;
-    width: 33.3333%;
-  }
-  
-  .tablink:hover {
-    background-color: lavender;
-  }
+  background-color: white;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  font-size: 17px;
+  width: 33.3333%;
+}
 
-  .tablink:active {
-    opacity: 0.5;
-  }
+.tablink:hover {
+  background-color: lavender;
+}
+
+.tablink:active {
+  opacity: 0.5;
+}
 
   /* Style the tab content (and add height:100% for full page content) */
 .tabcontent {
