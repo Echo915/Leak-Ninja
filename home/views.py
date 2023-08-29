@@ -86,6 +86,7 @@ def simulationView(request):
                     fluid_data = f"uploads/{pipe_data.fluid_data.data}"
                     density = pipe_data.fluid_data.density
                     diameter = pipe_data.diameter
+                    unit = str(pipe_data.unit)
                     length = pipe_data.length
 
                     result = {}
@@ -96,12 +97,18 @@ def simulationView(request):
                         chartTitle = f"{pipe_label}_{detected_leak.location}_{detected_leak.size}"
                         v_plot, p_plot = chartSimulation(fluid_data, chartTitle)
 
+                        if unit.startswith("Field Units"):
+                            unit = "Field Units"
+                        else:
+                            unit = "S.I Units"
+
                         leak_status = {
                             f"leak{id}": {
                                 "leak_location": detected_leak.location,
                                 "leak_size": detected_leak.size,
                                 "v_plot": v_plot,
                                 "p_plot": p_plot,
+                                "unit": unit,
                             }
                         }
 

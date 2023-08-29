@@ -6,25 +6,68 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Leak Ninja</title>
+        <link rel="icon" href="{% static 'images/LN_base_local_logo-icon.png' %}">
         <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     </head>
     <body>
-        <button class="tablink" id="defaultOpen" onclick="openPage('home', this)">Home</button>
-        <button class="tablink" onclick="openPage('data', this)">Data</button>
-        <button class="tablink" onclick="openPage('simulation', this)">Simulation</button>
-
-        <div id="home" class="tabcontent">
-            <h1>{{ greeting }}</h1>
+        <div id="nav-pan">
+            <button class="tablink" id="defaultOpen" onclick="openPage('home', this)">Home</button>
+            <button class="tablink" onclick="openPage('data', this)">Data</button>
+            <button class="tablink" onclick="openPage('simulation', this)">Simulation</button>
         </div>
-
+        <!--Homepage-->
+        <div id="home" class="tabcontent">
+            <div id="welcome-message">
+                <div id="head">
+                    <img id="logo-icon" src="{% static 'images/LN_base_local_logo-icon.png' %}">
+                    <h1 style="display: inline-block; margin: 0 70px;">Welcome to Leak Ninja!</h1>
+                </div>
+                <p id="body">Inspect your pipeline for leaks as quickly as possible</p>
+            </div>
+            <div class="slides fade">
+                <img id="slide-img" class="slide-img" src="{% static 'images/LN_base_local_IMG_0052_Original.jpg' %}">
+            </div>
+            <span class="info-msg">
+                <h1>Where Are Your Leaks Occuring?</h1>
+                <p>Our system will provide you with a very fast and convenient way to find all your leaks in no time!.</p>
+            </span>
+            <span style="margin: 10px;" class="info-msg">
+                <h3>Why else can you trust our system?</h3>
+                <ul>
+                    <li>Our system is completely free and easily accessible.</li>
+                    <li>Its less compplex nature will put you at ease.</li>
+                    <li>We employ no invasive technology of any sort.</li>
+                    <li>Choose us and save that money!!</li>
+                </ul>
+            </span>
+            <div class="footer">
+                <div id="head" style="display: inline-block; position: relative;">
+                    <img style="width: 100px; height: 100px;" src="{% static 'images/LN_base_local_logo-icon.png' %}">
+                    <h1 style="margin: 0; font-size: 2rem;">Leak Ninja</h1>
+                </div>
+                <div id="address" style="display: inline-block; margin-left: 100px;">
+                    <address>
+                        Contact us: <a href="mailto:leakninja.support@gmail.com">Email</a> | <a>Telephone</a><br>
+                        Visit us at:<br>
+                        University of Energy and Natural Resources<br>
+                        P.O. Box 214, Sunyani<br>
+                        Ghana
+                    </address>
+                </div>
+                <div id="copywright" style="display: inline-block; margin-left: 100px;">
+                    <p>Leak Ninja | All rights reserved |  <a href="mailto:leakninja.support@gmail.com">leakninja.support@gmail.com</a></p>
+                </div>
+            </div>
+        </div>
+        <!--Data Import Page-->
         <div id="data" class="tabcontent">
-            <h1>Import data here</h1>
+            <h1 style="text-align: center;">Upload Your Fluid Data in 3 Easy Steps</h1>
             <div class="steps-container">
                 <div class="steps-head" style="padding-top: 100px;">
                     <div class="steps">
                         <div class="step" style="left: 0px; transform: translate(-50%, -50%);">1</div>
                         <div class="step" style="left: 50%; transform: translateY(-50%);">2</div>
-                        <div class="step" style="right: 0px; transform: translate(50%, -50%);">3</div>
+                        <div id="main-step" class="step" style="right: 0px; transform: translate(50%, -50%);">3</div>
                     </div>
                 </div>
                 <div class="detail-steps-container">
@@ -45,41 +88,92 @@
                     </div>
                 </div>
             </div>
+            <p style="margin: 10 50px;">Click <a>here</a> to watch a tutorial on how to upload data.</p>
+            <div class="footer" style="display: inline-block;">
+                <div id="head" style="display: inline-block; position: relative;">
+                    <img style="width: 100px; height: 100px;" src="{% static 'images/LN_base_local_logo-icon.png' %}">
+                    <h1 style="margin: 0; font-size: 2rem;">Leak Ninja</h1>
+                </div>
+                <div id="address" style="display: inline-block; margin-left: 100px;">
+                    <address>
+                        Contact us: <a href="mailto:leakninja.support@gmail.com">Email</a> | <a>Telephone</a><br>
+                        Visit us at:<br>
+                        University of Energy and Natural Resources<br>
+                        P.O. Box 214, Sunyani<br>
+                        Ghana
+                    </address>
+                </div>
+                <div id="copywright" style="display: inline-block; margin-left: 100px;">
+                    <p>Leak Ninja | All rights reserved |  <a href="mailto:leakninja.support@gmail.com">leakninja.support@gmail.com</a></p>
+                </div>
+            </div>
         </div>
-
+        <!--Simulations Page-->
         <div id="simulation" class="tabcontent">
+            <div class="sim-page-head">
+                <div class="img-container">
+                    <img class="fade" src="{% static 'images/LN_base_local_istockphoto-1324380506-612x612.jpg' %}">
+                    <p class="img-text">Experience and Exciting Simulation System</p>
+                </div>
+                <div id="header-message">
+                    <h1>Get Ready to Unleash Your Inner Detective and Dive in For Some Leak-Hunting Excitement! &#128269;</h1>
+                </div>
+            </div>
             <h1>Run simulation here</h1>
             <div>
                 {% if availablePipeData %}
                     <div class="available-pipe-data-container">
                         {% for pipe_data in availablePipeData %}
                             <div class="available-pipe-data" onclick="toggleShowHideChildren(this)">
-                                <a id="text" class="sim" href="#">{{ pipe_data }}</a>
-                                <div class="sim-menu"><a href="#" onclick="runSimulation(this)">Run</a> | <a href="#">Delete</a></div>
+                                <a id="text" class="sim">{{ pipe_data }}</a>
+                                <div class="sim-menu"><a onclick="runSimulation(this)">Run</a> | <a>Delete</a></div>
                             </div><br>
                         {% endfor %}
                         <br>
                         <button class="button" onclick="toggleShowHide('sim-form')">Add</button>
+                        <div id="sim-form">
+                            <div class="form-head">
+                                <h3>Pipe Data</h3>
+                            </div>
+                            <div class="form-body">
+                                <form method="post" enctype="multipart/form-data">{% csrf_token %}
+                                    {{ pipeDataForm.as_p }}
+                                    <input type="submit" value="Save" class="button">
+                                </form>
+                            </div>
+                        </div>
                         <div id="result"></div>
                         <div id="result-template">
                             <p class="leak-location"></p>
-                            <img class="leak-display">
-                            <img class="leak-display">
+                            <p class="leak-size"></p>
+                            <div class="leak-display">
+                                <img>
+                            </div>
+                            <div class="leak-display">
+                                <img>
+                            </div>
                         </div>
                     </div>
                 {% else %}
                     <p>Click <button class="button" onclick="toggleShowHide('sim-form')">Add</button> to add pipe data.</p>
                 {% endif %}
             </div>
-            <div id="sim-form">
-                <div class="form-head">
-                    <h3>Pipe Data</h3>
+            <div class="footer" style="display: inline-block;">
+                <div id="head" style="display: inline-block; position: relative;">
+                    <img style="width: 100px; height: 100px;" src="{% static 'images/LN_base_local_logo-icon.png' %}">
+                    <h1 style="margin: 0; font-size: 2rem;">Leak Ninja</h1>
                 </div>
-                <div class="form-body">
-                    <form method="post" enctype="multipart/form-data">{% csrf_token %}
-                        {{ pipeDataForm.as_p }}
-                        <input type="submit" value="Save" class="button">
-                    </form>
+                <div id="address" style="display: inline-block; margin-left: 100px;">
+                    <address>
+                        Contact us: <a href="mailto:leakninja.support@gmail.com">Email</a> | <a>Telephone</a><br>
+                        Visit us at:<br>
+                        University of Energy and Natural Resources<br>
+                        P.O. Box 214, Sunyani<br>
+                        Ghana
+                    </address>
+                </div>
+                <div id="copywright" style="display: inline-block; margin-left: 100px;">
+                    <p>Leak Ninja | All rights reserved |  <a href="mailto:leakninja.support@gmail.com">leakninja.support@gmail.com</a></p>
                 </div>
             </div>
         </div>

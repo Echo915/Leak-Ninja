@@ -5,8 +5,70 @@ body, html {
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
+a {
+  color: blue;
+  cursor: pointer;
+}
+
+a:active {
+  color: #FF7900;
+}
+
 button {
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+#nav-pan {
+  position: fixed; 
+  width: 100%; 
+  z-index: 2;
+}
+
+#logo-icon {
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  display: block;
+}
+
+#welcome-message #head {
+  display: flex;
+  align-items: center;
+}
+
+.slide-img {
+  width: 100%;
+  height: 1000px;
+  margin: 30px 0;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.5);
+}
+
+.fade {
+  animation-name: fade;
+  animation-duration: 2.5s;
+}
+
+.blink {
+  animation-name: blink;
+  animation-duration: 2.5s;
+  animation-iteration-count: 5;
+}
+
+@keyframes fade {
+  from {opacity: 0.4;} to {opacity: 1;}
+}
+
+@keyframes blink {
+  0%, 50%, 100% {
+    opacity: 1;
+  }
+  25%, 75% {
+    opacity: 0;
+  }
+}
+
+li {
+  margin: 10px;
 }
 
 /* Style tab links */
@@ -31,6 +93,7 @@ button {
 
   /* Style the tab content (and add height:100% for full page content) */
 .tabcontent {
+  position: relative;
   display: none;
   padding: 100px 20px;
   height: 100%;
@@ -92,8 +155,16 @@ button {
   height: 50px;
   width: 50px;
   color: white;
-  background-color: #FF7900;
+  background-color: green;
+  opacity: 0.5;
   border-radius: 30px;
+}
+
+#main-step {
+  background-color: #FF7900;
+  height: 60px;
+  width: 60px;
+  opacity: 0.9;
 }
 
 .detail-steps-container {
@@ -132,6 +203,8 @@ button {
 .sim:active {color: #FF7900;}
 
 .sim-menu {
+  cursor: pointer;
+  position: absolute;
   font-size: small;
   display: none;
   margin: 10px 50px;
@@ -143,7 +216,7 @@ button {
 
 #sim-form {
   display: none;
-  position: relative;
+  position: absolute;
   border: 1px solid #FF7900;
   background-color: #FF7900;
   overflow: hidden;
@@ -151,6 +224,7 @@ button {
   height: 300px;
   margin: 20px;
   border-radius: 15px;
+  z-index: 1;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.5);
 }
 
@@ -169,7 +243,7 @@ button {
   background-color: white;
 }
 
-.leak-location {
+.leak-location, .leak-size {
   color: red;
   font-size: 25px;
   font-weight: bolder;
@@ -177,14 +251,75 @@ button {
 }
 
 .leak-display {
-  width: 45%;
+  position: relative; 
+  width: 45%; 
+  float: left; 
   margin: 2%;
+}
+
+.leak-display img {
+  width: 100%;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.5);
 }
 
-/*.leak-display-label {
+.footer {
+  width: 100%;
+  margin-top: 100px;
+  border-top: 1px solid #FF7900;
+}
+
+
+.leak-display-label {
   font-style: italic;
   position: absolute;
   bottom: 0;
-  margin-bottom: 10px;
-}*/
+  left: 50%;
+  transform: translate(-50%, 100%);
+}
+
+.sim-page-head {
+  position: relative;
+  width: 100%;
+  height: 500px;
+  overflow: hidden;
+  border-radius: 15px;
+  background-color: #FF7900;
+  color: white;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.5);
+}
+
+.sim-page-head .img-container {
+  position: relative;
+  width: 48%;
+  height: 84%;
+  left: 0;
+  top: 0;
+  float: left;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.5);
+}
+
+.sim-page-head img {
+  width: 100%;
+  height: 100%;
+}
+
+.sim-page-head #header-message {
+  position: absolute;
+  display: flex;
+  right: 0;
+  top: 0;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+  height: 100%;
+  text-align: center;
+}
+
+.sim-page-head .img-text {
+  color: white;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  font-weight: bolder;
+  transform: translateX(15%);
+}

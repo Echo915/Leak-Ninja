@@ -1,3 +1,4 @@
+// Dis plays the div or page associated with the clicked tablink
 function openPage(pageName, elmnt) {
     // Hide all elements with class="tabcontent" by default */
     var i, tabcontent, tablinks;
@@ -24,6 +25,7 @@ function openPage(pageName, elmnt) {
     //elmnt.style.backgroundColor = "#f2c196";
 }
 
+// Show/Hide an element 
 function toggleShowHide(elmnt) {
   if (document.getElementById(elmnt).style.display === "") {
     document.getElementById(elmnt).style.display = "block";
@@ -42,7 +44,7 @@ function toggleShowHideChildren(elmnt) {
   }
 }
 
-
+// Sends data request and retrieves simulated result
 async function runSimulation(elmnt) {
   // Obtains csrf_token from document for security reasons
   const csrf_token = document.querySelector('input[name="csrfmiddlewaretoken"]').value;
@@ -69,12 +71,10 @@ async function runSimulation(elmnt) {
     for (const leak in json_data) {
       newLeak = json_data[`${leak}`];
 
-      var leak_size = newLeak["leak_size"];
-      var v_plot = newLeak["v_plot"];
-      var p_plot = newLeak["p_plot"];
       var leak_location = newLeak["leak_location"];
 
       var results_container = document.getElementById("result");
+      results_container.innerHTML = "";
 
       // New div element for current leak
       var leak_display_container = document.createElement("div");
@@ -95,13 +95,21 @@ async function runSimulation(elmnt) {
       
       // Populates the new element with leak details using the inserted template
       var leak_details = leak_display_container.children;
-      leak_details[0].innerHTML = `Leak Detected Between ${leak_location[0]} and ${leak_location[1]} Section!!!`
+      leak_details[0].innerHTML = `Leak Detected Between ${leak_location[0]} and ${leak_location[1]} Section!!!`;
+      leak_details[0].classList.add("blink");
 
-      leak_details[1].setAttribute("src", `/static/images/${newLeak.v_plot}`);
-      leak_details[1].appendChild(v_label);
+      leak_details[1].innerHTML = `Leak size: ${newLeak.leak_size} ${mass_rate[newLeak.unit]}`;
+      leak_details[1].classList.add("blink");
 
-      leak_details[2].setAttribute("src", `/static/images/${newLeak.p_plot}`);
-      leak_details[2].appendChild(p_label);
+      var v_plot = leak_details[2].children[0];
+      v_plot.classList.add("fade");
+      v_plot.setAttribute("src", `/static/images/${newLeak.v_plot}`);
+      leak_details[2].appendChild(v_label);
+
+      var p_plot = leak_details[3].children[0];
+      p_plot.classList.add("fade");
+      p_plot.setAttribute("src", `/static/images/${newLeak.p_plot}`);
+      leak_details[3].appendChild(p_label);
 
       // Appends the now populated container into the results container
       results_container.appendChild(leak_display_container);
@@ -111,6 +119,39 @@ async function runSimulation(elmnt) {
     console.log("The request failed!");
   }
 }
+
+// Handles Units
+mass_rate = {
+  "Field Units": "lb/s",
+  "S.I Units": "Kg/s",
+}
+
+// Homepage slides
+var slides = [
+  "LN_base_local_IMG_0052_Original.jpg", 
+  "LN_base_local_IMG_0045_Original.jpg", 
+  "LN_base_local_IMG-20230827-WA0002.jpg",
+]
+let x = 1;
+
+let noOfSlides = slides.length;
+
+setInterval(function() {
+  var nextSlide = x % (noOfSlides + 1);
+  var slide_image = document.getElementById("slide-img");
+  slide_image.src = `/static/images/${slides[nextSlide]}`;
+
+  // Removes the fade class from the image, trigger a reflow and re-add the fade class to the slide image
+  slide_image.classList.remove("fade");
+  void slide_image.offsetWidth;
+  slide_image.classList.add("fade");
+  
+  x++;
+
+  if (x === noOfSlides) {
+    x = 0;
+  }
+}, 5000);
 
 // Gets the element with id="defaultOpen" and click on it
 document.getElementById("defaultOpen").click();

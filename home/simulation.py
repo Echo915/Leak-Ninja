@@ -110,10 +110,10 @@ def leakSimulation(data, density, diameter):
     return DETECTED_LEAKS
 
 
-def plotGraph(position, y_axis, y_label, title):
+def plotGraph(position, y_axis, y_label, title, color):
     plt.ioff()
 
-    plt.plot(position, y_axis)
+    plt.plot(position, y_axis, color=color)
     #plt.yticks(np.arange(0.8620, 0.863, 0.0002))
 
     # Axes Label
@@ -145,7 +145,7 @@ def chartSimulation(data, title):
     vLabel = "Velocity"
     pTitle = f"{title}_pressure.png"
     pLabel = "Pressure"        
-    plotGraph(position, pressure, pLabel, pTitle)
-    plotGraph(position, velocity, vLabel, vTitle)
+    plotGraph(position, pressure, pLabel, pTitle, color = "blue")
+    plotGraph(position, velocity, vLabel, vTitle, color="red")
 
     return vTitle, pTitle
